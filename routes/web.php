@@ -11,18 +11,29 @@
 |
 */
 
-Route::get('/', function () {
-    return view('index');
+Route::group([
+    'prefix' => 'admin',
+    'namespace' => 'Admin',
+    'as' => 'Admin.'
+], function(){
+    Route::get('/','IndexController@index')->name('Index');
+    Route::get('/test1','IndexController@test1')->name('Test1');
+    Route::get('/test2','IndexController@test2')->name('Test2');
 });
 
-Route::get('/list', function () {
-    return view('list');
-});
 
-Route::get('/info', function () {
-    return view('info');
-});
 
-Route::get('/list/item', function () {
-    return view('item');
+Route::get('/', [
+    'uses' => 'HomeController@index',
+    'as' => 'Home'
+]);
+
+
+Route::group([
+        'prefix' => 'news'
+    ], function () {
+    Route::get('/', 'NewsController@index')->name('News');
+    Route::get('/categories/', 'NewsController@category_list')->name('Category_List');
+    Route::get('/categories/{category}', 'NewsController@category')->name('Category');
+    Route::get('/{id}','NewsController@show')->name('NewsOne');
 });

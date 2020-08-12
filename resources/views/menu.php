@@ -1,11 +1,14 @@
 <ul>
     <li>
-        <a href="/">Главная</a>
+        <a href="<?=route('Home')?>">Главная</a>
     </li>
     <li>
-        <a href="/list">Список новостей</a>
+        <a href="<?=route('News')?>">Список новостей</a>
     </li>
     <li>
-        <a href="/info">О нас</a>
+        <a href="<?=route('Category_List')?>">Список категорий новостей</a>
+    </li>
+    <li>
+        <a href="<?=route('Admin.Index')?>">Админ панель</a>
     </li>
 </ul>
