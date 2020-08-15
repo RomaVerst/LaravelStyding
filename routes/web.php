@@ -33,7 +33,10 @@ Route::group([
         'prefix' => 'news'
     ], function () {
     Route::get('/', 'NewsController@index')->name('News');
-    Route::get('/categories/', 'NewsController@category_list')->name('Category_List');
-    Route::get('/categories/{category}', 'NewsController@category')->name('Category');
-    Route::get('/{id}','NewsController@show')->name('NewsOne');
+    Route::get('/categories/', 'CategoryController@category_list')->name('Category_List');
+    Route::get('/categories/{category}', 'CategoryController@category')->name('Category');
+    Route::get('/chosed/{id}','NewsController@show')->name('NewsOne');
 });
+Auth::routes();
+
+//Route::get('/home', 'HomeController@index')->name('home');

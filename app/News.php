@@ -10,19 +10,22 @@ class News
            'id' => 1,
            'title' => 'Новость 1',
            'text' => 'Текст новости 1',
-           'category_id' => 1
+           'category_id' => 1,
+           'isprivate' => false
        ],
        2 => [
-        'id' => 2,
-        'title' => 'Новость 2',
-        'text' => 'Текст новости 2',
-        'category_id' => 2
+            'id' => 2,
+            'title' => 'Новость 2',
+            'text' => 'Текст новости 2',
+            'category_id' => 2,
+            'isprivate' => false
        ],
         3 => [
             'id' => 3,
             'title' => 'Новость 3',
             'text' => 'Текст новости 3',
-            'category_id' => 1
+            'category_id' => 1,
+            'isprivate' => true
         ]
     ];
     public static function getNews(){
