@@ -1,0 +1,30 @@
+{
+    "1": {
+        "id": 1,
+        "title": "Новость 1",
+        "category_id": 1,
+        "text": "Текст новости 1",
+        "isprivate": false
+    },
+    "2": {
+        "id": 2,
+        "title": "Новость 2",
+        "category_id": 2,
+        "text": "Текст новости 2",
+        "isprivate": false
+    },
+    "3": {
+        "id": 3,
+        "title": "Новость 3",
+        "category_id": 1,
+        "text": "Текст новости 3",
+        "isprivate": true
+    },
+    "4": {
+        "id": 4,
+        "title": "Тестовый раздел",
+        "category_id": "1",
+        "text": "Это тестовая новость",
+        "isprivate": false
+    }
+}

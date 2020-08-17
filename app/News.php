@@ -2,41 +2,18 @@
 
 namespace App;
 use App\Category;
+use File;
 
 class News 
 {
-   private static $news = [
-       1 => [
-           'id' => 1,
-           'title' => 'Новость 1',
-           'text' => 'Текст новости 1',
-           'category_id' => 1,
-           'isprivate' => false
-       ],
-       2 => [
-            'id' => 2,
-            'title' => 'Новость 2',
-            'text' => 'Текст новости 2',
-            'category_id' => 2,
-            'isprivate' => false
-       ],
-        3 => [
-            'id' => 3,
-            'title' => 'Новость 3',
-            'text' => 'Текст новости 3',
-            'category_id' => 1,
-            'isprivate' => true
-        ]
-    ];
     public static function getNews(){
-        return static::$news;
+        return json_decode(File::get('News.json'), true);
     }
     public static function getNewsId($id){
-        if(isset(static::$news[$id])){
-            return static::$news[$id];
-        }
-        else{
-            return null;
+        foreach(static::getNews() as $news){
+            if($news['id'] == $id){
+                return $news;
+            }
         }
     }
     public static function getNewsByCategory($slug){
