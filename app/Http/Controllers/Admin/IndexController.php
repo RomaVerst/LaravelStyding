@@ -25,16 +25,14 @@ class IndexController extends Controller
             if((!empty($request->title)) && (!empty($request->text))){
                 $request->flash();
                 $news = News::getNews();
-                $id_added_News = count($news) + 1;
-                $addedNews = $request->all();
-                $addedNews = ["id" => $id_added_News] + $addedNews;
-                if(!array_key_exists('isprivate', $addedNews)){
-                    $addedNews += ['isprivate' => false];
-                } else{
-                    $addedNews['isprivate'] = true;
-                }
-                unset($addedNews["_token"]);
-                $news[] = $addedNews;
+                $news[] = [
+                    'title' => $request->title,
+                    'category_id' => $request->category_id,
+                    'text' => $request->text,
+                    'isprivate' => isset($request->isprivate)
+                ];
+                $id = array_key_last($news);
+                $news[$id] = ['id' => $id] + $news[$id];
                 File::put('News.json', json_encode($news, JSON_UNESCAPED_UNICODE | JSON_PRETTY_PRINT));
                 return redirect()->route('Admin.Create')->with('status', 'success');;
             } else{

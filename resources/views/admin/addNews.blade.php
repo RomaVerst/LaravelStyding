@@ -12,7 +12,7 @@
 
 @section('content')
     @if(session('status') != 'success')
-        <form method="POST" action="{{ route('Admin.Create') }}">
+        <form enctype="multipart/form-data" method="POST" action="{{ route('Admin.Create') }}">
             @csrf
 
             <div class="form-group row">
@@ -44,7 +44,9 @@
                     <textarea name="text" class="form-control" id="text" cols="30" rows="10">{{ old('text') }}</textarea>
                 </div>
             </div>
-
+            <div class="form-group col-md-12 text-md-center">
+                <input type="file" name="image">
+            </div>
             <div class="form-group row">
                 <label for="isprivate" class="col-md-4 col-form-label text-md-right">Приватная</label>
                 <div class="col-md-6">
