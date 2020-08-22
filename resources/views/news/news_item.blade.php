@@ -11,7 +11,8 @@
 @if(isset($news))
     @section('title_page')
         {{ $news['title'] }}
-    @endsection
+        <div class="card-img" style="background-image: url({{ $news['image'] ?? asset('storage/default.jpg') }})"></div>
+    @endsection  
     @section('content')
         @if (!$news['isprivate'])
             <p>{{ $news['text'] }}</p>
