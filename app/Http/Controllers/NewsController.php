@@ -9,10 +9,10 @@ use Illuminate\Http\Request;
 class NewsController extends Controller
 {
     function index(){
-        return view('news.news_list')->with('news', News::getNews());
+        return view('news.news_list')->with('news',News::all());
     }
 
-    function show($id = 0){
-        return view('news.news_item')->with('news', News::getNewsId($id));
+    function show(News $news){
+        return view('news.news_item')->with('news',$news);
     }
 }

@@ -11,17 +11,20 @@ class CategorySeeder extends Seeder
      */
     public function run()
     {
-        DB::table('category')->insertGetId(
+        DB::table('category')->insert(
             [
                 [
+                    "id" => 1,
                     "title" => "Спорт",
                     "slug" => "sport"
                 ],
                 [
+                    "id" => 2,
                     "title" => "Политика",
                     "slug" => "politic"
                 ],
                 [
+                    "id" => 3,
                     "title" => "Экономика",
                     "slug" => "economic"
                 ]

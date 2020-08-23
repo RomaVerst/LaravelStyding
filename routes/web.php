@@ -36,7 +36,7 @@ Route::group([
     Route::get('/', 'NewsController@index')->name('News');
     Route::get('/categories', 'CategoryController@category_list')->name('Category_List');
     Route::get('/categories/{category}', 'CategoryController@category')->name('Category');
-    Route::get('/chosed/{id?}','NewsController@show')->name('NewsOne');
+    Route::get('/chosed/{news}','NewsController@show')->name('NewsOne');
 });
 Auth::routes();
 

@@ -6,7 +6,7 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Category;
 use App\News;
-use File;
+use DB, Storage;
 
 
 class IndexController extends Controller
@@ -24,16 +24,18 @@ class IndexController extends Controller
         if($request->isMethod('post')){
             if((!empty($request->title)) && (!empty($request->text))){
                 $request->flash();
-                $news = News::getNews();
-                $news[] = [
+                $url = null;
+                if ($request->file('image')) {
+                    $path = Storage::putFile('public/images', $request->file('image'));
+                    $url = Storage::url($path);
+                }
+                DB::table('news')->insert([
                     'title' => $request->title,
                     'category_id' => $request->category_id,
                     'text' => $request->text,
+                    'image' => $url,
                     'isprivate' => isset($request->isprivate)
-                ];
-                $id = array_key_last($news);
-                $news[$id] = ['id' => $id] + $news[$id];
-                File::put('News.json', json_encode($news, JSON_UNESCAPED_UNICODE | JSON_PRETTY_PRINT));
+                ]);
                 return redirect()->route('Admin.Create')->with('status', 'success');;
             } else{
                 $request->flash();
