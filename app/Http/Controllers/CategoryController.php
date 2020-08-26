@@ -8,13 +8,17 @@ use Illuminate\Http\Request;
 
 class CategoryController extends Controller
 {
+
     function category($slug){
+        $category =  Category::query()->where('slug', $slug)->get();
         return view('news.category', [
-            'category' => Category::getCategoryBySlug($slug),
-            'news' => News::getNewsByCategory($slug)
+            'category' => $category->first(),
+            'news' => News::query()
+                ->where('category_id', $category->first()->id)
+                ->get()
         ]);
     }
     function category_list(){
-        return view('news.category_list')->with('category', Category::getCategories());
+        return view('news.category_list')->with('category', Category::query()->get());
     }
 }

@@ -9,12 +9,3 @@
 <li class="nav-item {{ request()->routeIs('Admin.Index')?'active':'' }}">
     <a class="nav-link" href="{{ route('Admin.Index') }}">Админ панель</a>
 </li>
-<li class="nav-item {{ request()->routeIs('Admin.Create')?'active':'' }}">
-    <a class="nav-link" href="{{ route('Admin.Create') }}">Добавление новости</a>
-</li>
-<li class="nav-item {{ request()->routeIs('Admin.Test1')?'active':'' }}">
-    <a class="nav-link" href="{{ route('Admin.Test1') }}">Скачать все новости</a>
-</li>
-<li class="nav-item {{ request()->routeIs('Admin.Test2')?'active':'' }}">
-    <a class="nav-link" href="{{ route('Admin.Test2') }}">Скачать все категории</a>
-</li>

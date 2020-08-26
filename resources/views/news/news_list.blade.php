@@ -24,4 +24,5 @@
             <hr>
         @endif
     @endforeach
+    {{ $news->links() }}
 @endsection

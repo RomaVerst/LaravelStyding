@@ -13,6 +13,6 @@
 
 @section('content')
     @foreach($category as $item)
-        <a href="{{ route('Category', $item['slug']) }}">{{ $item['title'] }}</a><br>
+        <a href="{{ route('Category', $item->slug) }}">{{ $item->title }}</a><br>
     @endforeach
 @endsection

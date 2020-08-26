@@ -1,19 +1,10 @@
 <?php
 
 namespace App;
-use File;
 
+use Illuminate\Database\Eloquent\Model;
 
-class Category 
+class Category extends Model
 {
-    public static function getCategories(){
-        return json_decode(File::get('Categories.json'), true);
-    }
-    public static function getCategoryBySlug($slug){
-        foreach(static::getCategories() as $category){
-            if ($category['slug'] == $slug){
-                return $category;
-            }
-        }
-    }
+    //
 }

@@ -9,7 +9,8 @@ use Illuminate\Http\Request;
 class NewsController extends Controller
 {
     function index(){
-        return view('news.news_list')->with('news',News::all());
+        $news = News::query()->paginate(5);
+        return view('news.news_list')->with('news',$news);
     }
 
     function show(News $news){

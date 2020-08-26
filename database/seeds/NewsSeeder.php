@@ -16,11 +16,11 @@ class NewsSeeder extends Seeder
     private function getData(){
         $data = [];
         $faker = Faker\Factory::create('ru_RU');
-        for($i=0; $i<6; $i++){
+        for($i=0; $i<20; $i++){
             $data[]= [
                 'title' => $faker->realText(rand(10, 20)),
                 'text' => $faker->realText(rand(1000, 3000)),
-                'isprivate' => false,
+                'isprivate' => (bool)rand(0,1),
                 'category_id' => rand(1, 3)
             ];
         }

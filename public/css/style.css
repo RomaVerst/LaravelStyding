@@ -4,3 +4,10 @@
     background-size: cover;
     background-repeat: no-repeat;
 }
+span.ico-crud.btn.btn-outline-primary{
+    margin-top: 10px !important;
+    margin-right: 10px !important;
+}
+span.add.btn.btn-outline-primary{
+    padding: 3px 6px;
+}

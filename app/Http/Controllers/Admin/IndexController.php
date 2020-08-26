@@ -12,7 +12,8 @@ use DB, Storage;
 class IndexController extends Controller
 {
     function index(){
-        return view('admin.index');
+        $news = News::query()->paginate(5);
+        return view('admin.index')->with('news',$news);
     }
     function test1(){
         return view('admin.test1');
@@ -20,29 +21,38 @@ class IndexController extends Controller
     function test2(){
         return view('admin.test2');
     }
-    function create(Request $request){
+    function create(Request $request, Category $category, News $news){
         if($request->isMethod('post')){
             if((!empty($request->title)) && (!empty($request->text))){
-                $request->flash();
                 $url = null;
                 if ($request->file('image')) {
                     $path = Storage::putFile('public/images', $request->file('image'));
                     $url = Storage::url($path);
                 }
-                DB::table('news')->insert([
-                    'title' => $request->title,
-                    'category_id' => $request->category_id,
-                    'text' => $request->text,
-                    'image' => $url,
-                    'isprivate' => isset($request->isprivate)
-                ]);
-                return redirect()->route('Admin.Create')->with('status', 'success');;
+                $news->image = $url;
+                $news->fill($request->all());
+                $news->save();
+                return redirect()->route('Admin.Create')->with('status', 'success');
             } else{
                 $request->flash();
             
                 return redirect()->route('Admin.Create')->with('status', 'error');
             }
         }
-        return view('admin.addNews')->with('categories', Category::getCategories());
+
+        return view('admin.addNews', [
+            'categories' => $category->all(),
+            'news' => $news
+        ]);
+    }
+    function edit(Category $category, News $news){
+        return view('admin.addNews', [
+            'categories' => $category->all(),
+            'news' => $news
+        ]);
+    }
+    function delete(News $news){
+        $news->delete();
+        return redirect()->route('Admin.Index')->with('success', 'Новость успешно удалена!');
     }
 }
