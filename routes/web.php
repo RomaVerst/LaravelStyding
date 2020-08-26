@@ -18,8 +18,9 @@ Route::group([
 ], function(){
     Route::get('/','IndexController@index')->name('Index');
     Route::match(['get', 'post'], '/create','IndexController@create')->name('Create');
-    Route::match(['get', 'post'], '/edit/{news}','IndexController@edit')->name('Edit');
-    Route::match(['get', 'post'], '/delete/{news}','IndexController@delete')->name('Delete');
+    Route::get('/edit/{news}','IndexController@edit')->name('Edit');
+    Route::get('/delete/{news}','IndexController@delete')->name('Delete');
+    Route::post('/update/{news}','IndexController@update')->name('Update');
     Route::get('/test1','IndexController@test1')->name('Test1');
     Route::get('/test2','IndexController@test2')->name('Test2');
 });

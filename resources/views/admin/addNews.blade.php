@@ -11,8 +11,7 @@
 @endsection
 
 @section('content')
-    @if(session('status') != 'success')
-        <form enctype="multipart/form-data" method="POST" action="{{ route('Admin.Create') }}">
+        <form enctype="multipart/form-data" method="POST" action="@if($news->id){{ route('Admin.Update', $news) }}@else{{ route('Admin.Create') }}@endif">
             @csrf
 
             <div class="form-group row">
@@ -64,9 +63,4 @@
             Заполните все текстовые поля
         </div>
         @endif
-    @else
-        <div class="alert alert-success" role="alert">
-            Новость добавлена!
-        </div>
-    @endif
 @endsection
