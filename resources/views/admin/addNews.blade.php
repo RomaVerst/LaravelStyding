@@ -19,20 +19,34 @@
 
                 <div class="col-md-6">
                     <input id="title" type="text" class="form-control" name="title" value="{{ $news->title ?? old('title') }}" required autofocus>
+                    @if($errors->has('title'))
+                    <div class="alert alert-danger" role="alert">
+                        @foreach($errors->get('title') as $error)
+                            {{ $error }}
+                        @endforeach
+                    </div>
+                    @endif
                 </div>
             </div>
             
             <div class="form-group row">
                 <label for="category_id" class="col-md-4 col-form-label text-md-right">Категория новости</label>
-
                 <div class="col-md-6">
                     <select id="category_id" class="form-control" name="category_id">
+                       
                         @forelse ($categories as $item)
-                            <option @if ($news->category_id || old($item->id)) selected @endif value="{{ $item->id }}">{{ $item->title }}</option>
+                            <option @if (($news->category_id == $item->id) || old('category_id') == $item->id) selected @endif value="{{ $item->id }}">{{ $item->title }}</option>
                         @empty
                             <option selected value="0">Нет категорий</option>
                         @endforelse
                     </select>
+                    @if($errors->has('category_id'))
+                    <div class="alert alert-danger" role="alert">
+                        @foreach($errors->get('category_id') as $error)
+                            {{ $error }}
+                        @endforeach
+                    </div>
+                    @endif
                 </div>
             </div>
 
@@ -41,10 +55,24 @@
 
                 <div class="col-md-6">
                     <textarea name="text" class="form-control" id="text" cols="30" rows="10">{{ $news->text ?? old('text') }}</textarea>
+                    @if($errors->has('text'))
+                    <div class="alert alert-danger" role="alert">
+                        @foreach($errors->get('text') as $error)
+                            {{ $error }}
+                        @endforeach
+                    </div>
+                    @endif
                 </div>
             </div>
             <div class="form-group col-md-12 text-md-center">
                 <input type="file" name="image">
+                @if($errors->has('image'))
+                <div class="alert alert-danger" role="alert">
+                    @foreach($errors->get('image') as $error)
+                        {{ $error }}
+                    @endforeach
+                </div>
+                @endif
             </div>
             <div class="form-group row">
                 <label for="isprivate" class="col-md-4 col-form-label text-md-right">Приватная</label>
@@ -58,9 +86,4 @@
                 </div>
             </div>
         </form>
-        @if(session('status') == 'error')
-        <div class="alert alert-danger" role="alert">
-            Заполните все текстовые поля
-        </div>
-        @endif
 @endsection

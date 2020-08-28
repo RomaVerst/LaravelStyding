@@ -23,21 +23,17 @@ class IndexController extends Controller
     }
     function create(Request $request, Category $category, News $news){
         if($request->isMethod('post')){
-            if((!empty($request->title)) && (!empty($request->text))){
-                $url = null;
-                if ($request->file('image')) {
-                    $path = Storage::putFile('public/images', $request->file('image'));
-                    $url = Storage::url($path);
-                }
-                $news->image = $url;
-                $news->fill($request->all());
-                $news->save();
-                return redirect()->route('Admin.Index')->route('Admin.Index')->with('success', 'Новость успешно добавлена!');
-            } else{
-                $request->flash();
-            
-                return redirect()->route('Admin.Create')->with('status', 'error');
+            $url = null;
+            if ($request->file('image')) {
+                $path = Storage::putFile('public/images', $request->file('image'));
+                $url = Storage::url($path);
             }
+            $news->image = $url;
+
+            $this->validate($request,News::rules(), [], News::attrName());
+            $news->fill($request->all());
+            $news->save();
+            return redirect()->route('Admin.Index')->with('success', 'Новость успешно добавлена!');
         }
 
         return view('admin.addNews', [
@@ -55,24 +51,16 @@ class IndexController extends Controller
         $news->delete();
         return redirect()->route('Admin.Index')->with('success', 'Новость успешно удалена!');
     }
-    function update(Request $request, Category $category, News $news){
-        if($request->isMethod('post')){
-            
-            if((!empty($request->title)) && (!empty($request->text))){
-                $url = null;
-                if ($request->file('image')) {
-                    $path = Storage::putFile('public/images', $request->file('image'));
-                    $url = Storage::url($path);
-                }
-                $news->image = $url;
-                $news->fill($request->all());
-                $news->save();
-                return redirect()->route('Admin.Index')->with('success', 'Новость успешно изменена!');
-            } else{
-                $request->flash();
-            
-                return redirect()->route('Admin.Create')->with('status', 'error');
-            }
+    function update(Request $request, News $news){  
+        $url = null;
+        if ($request->file('image')) {
+            $path = Storage::putFile('public/images', $request->file('image'));
+            $url = Storage::url($path);
         }
+        $news->image = $url;
+        $this->validate($request,News::rules(), [], News::attrName());
+        $news->fill($request->all());
+        $news->save();
+        return redirect()->route('Admin.Index')->with('success', 'Новость успешно изменена!');        
     }
 }
