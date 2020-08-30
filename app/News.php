@@ -19,10 +19,10 @@ class News extends Model
     }
     public static function attrName(){
         return [
-            'title' => 'Заголовок новости',
-            'text' => 'Текст новости',
-            'image' => 'Изображение',
-            'category_id' => "Категория новости"
+            'title' => '"Заголовок новости"',
+            'text' => '"Текст новости"',
+            'image' => '"Изображение"',
+            'category_id' => '"Категория новости"'
         ];
     }
 }

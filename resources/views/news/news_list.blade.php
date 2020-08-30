@@ -17,7 +17,7 @@
         <h3>{{ $item->title }}</h3>
         <div class="card-img" style="background-image: url({{ $item->image ?? asset('storage/default.jpg') }})"></div>
         @if (!$item->isprivate)
-            <a href="{{ route('NewsOne', $item->id) }}">Подробнее...</a>
+            <a href="{{ route('news_one', $item->id) }}">Подробнее...</a>
             <hr>
         @else
             <p>Эта новость приватна, <a href="{{ route('register') }}">зарегистрируйтесь</a></p>

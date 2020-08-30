@@ -33,7 +33,7 @@ class IndexController extends Controller
             $this->validate($request,News::rules(), [], News::attrName());
             $news->fill($request->all());
             $news->save();
-            return redirect()->route('Admin.Index')->with('success', 'Новость успешно добавлена!');
+            return redirect()->route('admin.index')->with('success', 'Новость успешно добавлена!');
         }
 
         return view('admin.addNews', [
@@ -49,7 +49,7 @@ class IndexController extends Controller
     }
     function delete(News $news){
         $news->delete();
-        return redirect()->route('Admin.Index')->with('success', 'Новость успешно удалена!');
+        return redirect()->route('admin.index')->with('success', 'Новость успешно удалена!');
     }
     function update(Request $request, News $news){  
         $url = null;
@@ -61,6 +61,6 @@ class IndexController extends Controller
         $this->validate($request,News::rules(), [], News::attrName());
         $news->fill($request->all());
         $news->save();
-        return redirect()->route('Admin.Index')->with('success', 'Новость успешно изменена!');        
+        return redirect()->route('admin.index')->with('success', 'Новость успешно изменена!');        
     }
 }

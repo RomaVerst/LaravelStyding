@@ -11,7 +11,7 @@
 @endsection
 
 @section('content')
-        <form enctype="multipart/form-data" method="POST" action="@if($news->id){{ route('Admin.Update', $news) }}@else{{ route('Admin.Create') }}@endif">
+        <form enctype="multipart/form-data" method="POST" action="@if($news->id){{ route('admin.update', $news) }}@else{{ route('admin.create') }}@endif">
             @csrf
 
             <div class="form-group row">

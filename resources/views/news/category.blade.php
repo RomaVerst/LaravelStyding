@@ -15,7 +15,7 @@
 @section('content')
     @if(!empty($news))
         @foreach($news as $item)
-            <a href="{{ route('NewsOne', $item->id) }}">{{ $item->title }}</a><br>
+            <a href="{{ route('news_one', $item->id) }}">{{ $item->title }}</a><br>
         @endforeach
     @else
         <p>Таких новостей в данной категории пока нет</p>
