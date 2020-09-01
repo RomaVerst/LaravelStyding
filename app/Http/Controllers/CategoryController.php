@@ -10,11 +10,11 @@ class CategoryController extends Controller
 {
 
     function category($slug){
-        $category =  Category::query()->where('slug', $slug)->get();
+        $category =  Category::query()->where('slug', $slug)->first();
         return view('news.category', [
-            'category' => $category->first(),
+            'category' => $category,
             'news' => News::query()
-                ->where('category_id', $category->first()->id)
+                ->where('category_id', $category->id)
                 ->get()
         ]);
     }

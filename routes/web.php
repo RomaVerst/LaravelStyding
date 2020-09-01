@@ -14,15 +14,28 @@
 Route::group([
     'prefix' => 'admin',
     'namespace' => 'Admin',
-    'as' => 'admin.'
+    'as' => 'admin.',
+    'middleware' => ['auth','is_admin']
 ], function(){
     Route::get('/','IndexController@index')->name('index');
+    /*
+    |--------------------------------------------------------------------------
+    | CRUD Пользователей
+    |--------------------------------------------------------------------------
+    |
+    */
+    Route::match(['get', 'post'], '/users','IndexController@users')->name('users');
+    Route::get('/users/destroy/{user}','IndexController@destroyUser')->name('destroyUser');
+    /*
+    |--------------------------------------------------------------------------
+    | CRUD Новостей
+    |--------------------------------------------------------------------------
+    |
+    */
     Route::match(['get', 'post'], '/create','IndexController@create')->name('create');
     Route::get('/edit/{news}','IndexController@edit')->name('edit');
     Route::get('/delete/{news}','IndexController@delete')->name('delete');
     Route::post('/update/{news}','IndexController@update')->name('update');
-    Route::get('/test1','IndexController@test1')->name('test1');
-    Route::get('/test2','IndexController@test2')->name('test2');
 });
 
 
@@ -43,4 +56,4 @@ Route::group([
 });
 Auth::routes();
 
-//Route::get('/home', 'HomeController@index')->name('home');
+Route::match(['get', 'post'], '/profile', 'ProfileController@update')->name('updateProfile');

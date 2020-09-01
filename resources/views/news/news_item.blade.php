@@ -14,7 +14,7 @@
         <div class="card-img" style="background-image: url({{ $news['image'] ?? asset('storage/default.jpg') }})"></div>
     @endsection  
     @section('content')
-        @if (!$news['isprivate'])
+        @if (!$news['isprivate'] || Auth::check())
             <p>{{ $news['text'] }}</p>
         @else
             <p>Эта новость приватна, <a href="{{ route('register') }}">зарегистрируйтесь</a></p>

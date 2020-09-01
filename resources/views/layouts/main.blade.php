@@ -55,11 +55,10 @@
                                 </a>
 
                                 <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+                                <a href="{{ route('updateProfile') }}" class="dropdown-item">Редактировать профиль</a>
                                     <a class="dropdown-item" href="{{ route('logout') }}"
                                        onclick="event.preventDefault();
-                                                     document.getElementById('logout-form').submit();">
-                                        {{ __('Logout') }}
-                                    </a>
+                                                     document.getElementById('logout-form').submit();">Выйти</a>
 
                                     <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
                                         @csrf
@@ -83,6 +82,17 @@
                         </div>
                         <div class="card">
                             <div class="card-body">
+                                @if(session('success'))
+                                <div class="alert alert-success alert-dismissible">
+                                    <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+                                    {{ session('success') }}
+                                </div>
+                                @elseif(session('error'))
+                                <div class="alert alert-danger alert-dismissible">
+                                    <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+                                    {{ session('error') }}
+                                </div>
+                                @endif
                                 @yield('content')
                             </div>
                         </div>

@@ -13,7 +13,7 @@ class News extends Model
         return [
             'title' => 'required|min:3',
             'text' => 'required|min:3',
-            'image' => 'mimes:jpeg,bmp,png',
+            'image' => 'mimes:jpg,jpeg,webp,bmp,png',
             'category_id' => "required|exists:{$tableNameCategory},id"
         ];
     }

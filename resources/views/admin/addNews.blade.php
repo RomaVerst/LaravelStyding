@@ -18,7 +18,7 @@
                 <label for="title" class="col-md-4 col-form-label text-md-right">Заголовок новости</label>
 
                 <div class="col-md-6">
-                    <input id="title" type="text" class="form-control" name="title" value="{{ $news->title ?? old('title') }}" required autofocus>
+                    <input id="title" type="text" class="form-control" name="title" value="{{ old('title') ?? $news->title ?? '' }}" required autofocus>
                     @if($errors->has('title'))
                     <div class="alert alert-danger" role="alert">
                         @foreach($errors->get('title') as $error)
@@ -54,7 +54,7 @@
                 <label for="text" class="col-md-4 col-form-label text-md-right">Текст новости</label>
 
                 <div class="col-md-6">
-                    <textarea name="text" class="form-control" id="text" cols="30" rows="10">{{ $news->text ?? old('text') }}</textarea>
+                    <textarea name="text" class="form-control" id="text" cols="30" rows="10">{{ old('text') ?? $news->text }}</textarea>
                     @if($errors->has('text'))
                     <div class="alert alert-danger" role="alert">
                         @foreach($errors->get('text') as $error)
@@ -77,12 +77,12 @@
             <div class="form-group row">
                 <label for="isprivate" class="col-md-4 col-form-label text-md-right">Приватная</label>
                 <div class="col-md-6">
-                    <input id="isprivate" @if($news->isprivate==1 || old('isprivate')==1) checked @endif type="checkbox" class="form-check-input" name="isprivate" value="1">
+                    <input id="isprivate" @if(old('isprivate')==1 || $news->isprivate==1) checked @endif type="checkbox" class="form-check-input" name="isprivate" value="1">
                 </div>   
             </div>
             <div class="form-group row justify-content-end">
                 <div class="col-md-4">
-                    <input type="submit" class="btn btn-primary" value="@if($news->id) Изменить@else Добавить@endif новость">
+                    <input type="submit" class="btn btn-primary" value="@if($news->id) Изменить @else Добавить @endif новость">
                 </div>
             </div>
         </form>

@@ -1,6 +1,6 @@
 @extends('layouts.main')
 @section('title')
-    @parent Панель администратора
+    @parent CRUD Новостей
 @endsection
 @section('menu')
     @include ('admin.menu')
@@ -19,21 +19,6 @@
 @endsection
 
 @section('content')
-    @if(session('success'))
-        <div class="alert alert-success alert-dismissible fade show" role="alert">
-            {{ session('success') }}
-            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-            </button>
-        </div>
-    @elseif(session('error'))
-        <div class="alert alert-success alert-dismissible fade show" role="alert">
-            {{ session('error') }}
-            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-            </button>
-        </div>
-    @endif
     @foreach($news as $item)
         <h3>{{ $item->title }}</h3>
         <div class="card-img" style="background-image: url({{ $item->image ?? asset('storage/default.jpg') }})"></div>
@@ -54,7 +39,7 @@
                 </svg>
             </span>
         </a>
-        <a href="{{ route('news_one', $item->id) }}">
+        <a href="{{ route('news_one', $item) }}">
             <span class="ico-crud btn btn-outline-primary">Подробнее...</span>
         </a>
         <hr>

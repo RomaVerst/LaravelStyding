@@ -12,6 +12,8 @@
 <li class="nav-item {{ request()->routeIs('category_list')?'active':'' }}">
     <a class="nav-link" href="{{ route('category_list') }}">Список категорий новостей</a>
 </li>
+@if(Auth::user() && Auth::user()->is_admin)
 <li class="nav-item {{ request()->routeIs('admin.index')?'active':'' }}">
     <a class="nav-link" href="{{ route('admin.index') }}">Админ панель</a>
 </li>
+@endif

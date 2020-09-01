@@ -7,5 +7,8 @@
     </a>
 </li>
 <li class="nav-item {{ request()->routeIs('admin.index')?'active':'' }}">
-    <a class="nav-link" href="{{ route('admin.index') }}">Админ панель</a>
+    <a class="nav-link" href="{{ route('admin.index') }}">CRUD Новостей</a>
+</li>
+<li class="nav-item {{ request()->routeIs('admin.userList')?'active':'' }}">
+    <a class="nav-link" href="{{ route('admin.users') }}">Список пользователей</a>
 </li>
