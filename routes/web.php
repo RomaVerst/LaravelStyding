@@ -24,18 +24,19 @@ Route::group([
     |--------------------------------------------------------------------------
     |
     */
-    Route::match(['get', 'post'], '/users','IndexController@users')->name('users');
-    Route::get('/users/destroy/{user}','IndexController@destroyUser')->name('destroyUser');
+    Route::get('/users','UsersController@index')->name('users');
+    Route::get('/users/destroy/{user}','UsersController@destroyUser')->name('destroyUser');
+    Route::get('/users/toggle_admin/{user}','UsersController@toggleAdmin')->name('toggleAdmin');
     /*
     |--------------------------------------------------------------------------
     | CRUD Новостей
     |--------------------------------------------------------------------------
     |
     */
-    Route::match(['get', 'post'], '/create','IndexController@create')->name('create');
-    Route::get('/edit/{news}','IndexController@edit')->name('edit');
-    Route::get('/delete/{news}','IndexController@delete')->name('delete');
-    Route::post('/update/{news}','IndexController@update')->name('update');
+    Route::match(['get', 'post'], '/create','NewsController@create')->name('create');
+    Route::get('/edit/{news}','NewsController@edit')->name('edit');
+    Route::get('/delete/{news}','NewsController@delete')->name('delete');
+    Route::post('/update/{news}','NewsController@update')->name('update');
 });
 
 
