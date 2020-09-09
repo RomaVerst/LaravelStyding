@@ -3,7 +3,7 @@
 namespace App\Repositories;
 
 use App\User;
-use SocialiteProviders\Manager\OAuth2\User as UserAuth;
+use Laravel\Socialite\Two\User as UserAuth;
 
 
 class UserRepository
@@ -17,7 +17,7 @@ class UserRepository
     if(empty($userInSystem)){
         $userInSystem = new User();
         $userInSystem->fill([
-            'name' => !empty($user->getName()) ? $user->getName() : '',
+            'name' => !empty($user->getName()) ? $user->getName() : $user->getNickname(),
             'email' => !empty($user->getEmail()) ? $user->getEmail() : '',
             'password' => '',
             'id_in_soc' => !empty($user->getId()) ? $user->getId() : '',

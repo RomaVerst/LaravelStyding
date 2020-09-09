@@ -57,7 +57,10 @@ Route::group([
     Route::get('/chosed/{news}','NewsController@show')->name('news_one');
 });
 Auth::routes();
+
 Route::get('/login/vk', 'LoginController@loginVK')->name('loginvk');
 Route::get('/login/vk/response', 'LoginController@responseVK')->name('responsevk');
+Route::get('/login/github', 'LoginController@loginGitHub')->name('logingit');
+Route::get('/login/github/response', 'LoginController@responseGitHub')->name('responsegit');
 
 Route::match(['get', 'post'], '/profile', 'ProfileController@update')->name('updateProfile');

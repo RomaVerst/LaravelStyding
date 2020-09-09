@@ -12,6 +12,9 @@ span.btn-outline-primary{
 span.add.btn.btn-outline-primary{
     padding: 3px 6px;
 }
-.soc_img{
+.soc_img .col{
+    flex-grow: 0.1 !important;
+}
+.img_user{
     width: 30px !important;
 }
