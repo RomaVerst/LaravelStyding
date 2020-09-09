@@ -12,7 +12,7 @@ class CreateNewsTableCreat extends Migration
      * @return void
      */
     public function up()
-    { 
+    {
         Schema::create('news', function (Blueprint $table){
             $table->bigIncrements('id')->unsigned();
             $table->string('title')->comment('Заголовок');
@@ -20,9 +20,10 @@ class CreateNewsTableCreat extends Migration
             $table->boolean('isprivate')->default(false);
             $table->string('image')->nullable(true);
             $table->string('category_id');
+            $table->string('link',191);
             $table->timestamp('created_at')->useCurrent();
             $table->timestamp('updated_at')->useCurrent();
-        });   
+        });
     }
 
     /**

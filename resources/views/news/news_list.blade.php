@@ -15,9 +15,16 @@
 @section('content')
     @foreach($news as $item)
         <h3>{{ $item->title }}</h3>
-        <div class="card-img" style="background-image: url({{ $item->image ?? asset('storage/default.jpg') }})"></div>
+        <a href="{{ route('news_one', $item) }}">
+            <div class="card-img" style="background-image: url({{ $item->image ?? asset('storage/default.jpg') }})"></div>
+        </a>
         @if (!$item->isprivate || Auth::check())
-            <a href="{{ route('news_one', $item->id) }}">Подробнее...</a>
+            <p>
+                {{ mb_substr($item->text, 0, 100) }}...
+            </p>
+            <a href="{{ route('news_one', $item) }}">
+                Читать дальше...
+            </a>
             <hr>
         @else
             <p>

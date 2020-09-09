@@ -29,9 +29,9 @@ class NewsController extends Controller
         ]);
     }
 
-    function update(Request $request, News $news){  
+    function update(Request $request, News $news){
         $this->saveNews($request, $news);
-        return redirect()->route('admin.index')->with('success', 'Новость успешно изменена!');        
+        return redirect()->route('admin.index')->with('success', 'Новость успешно изменена!');
     }
 
     function delete(News $news){

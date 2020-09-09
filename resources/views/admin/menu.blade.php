@@ -12,3 +12,6 @@
 <li class="nav-item {{ request()->routeIs('admin.userList')?'active':'' }}">
     <a class="nav-link" href="{{ route('admin.users') }}">Список пользователей</a>
 </li>
+<li class="nav-item {{ request()->routeIs('admin.parser')?'active':'' }}">
+    <a class="nav-link" href="{{ route('admin.parser') }}">Парсер</a>
+</li>

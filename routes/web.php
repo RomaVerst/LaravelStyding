@@ -18,6 +18,7 @@ Route::group([
     'middleware' => ['auth','is_admin']
 ], function(){
     Route::get('/','IndexController@index')->name('index');
+    Route::get('/parser', 'ParserController@index')->name('parser');
     /*
     |--------------------------------------------------------------------------
     | CRUD Пользователей
@@ -56,5 +57,7 @@ Route::group([
     Route::get('/chosed/{news}','NewsController@show')->name('news_one');
 });
 Auth::routes();
+Route::get('/login/vk', 'LoginController@loginVK')->name('loginvk');
+Route::get('/login/vk/response', 'LoginController@responseVK')->name('responsevk');
 
 Route::match(['get', 'post'], '/profile', 'ProfileController@update')->name('updateProfile');
